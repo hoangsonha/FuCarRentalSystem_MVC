@@ -1,0 +1,184 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+   "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Admin Customer Page</title>
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+	rel="stylesheet">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<link
+	href="https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap"
+	rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link href="resources/css/admin.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+	<!-- ======= Header ======= -->
+	<header id="header" class="header fixed-top d-flex align-items-center">
+
+	<div class="d-flex align-items-center justify-content-between">
+		<a href="index.html" class="logo d-flex align-items-center"
+			previewlistener="true"> <span class="d-none d-lg-block">Admin
+				Page</span>
+		</a> <i class="bi bi-list toggle-sidebar-btn"></i>
+	</div>
+	<!-- End Logo --> <nav class="header-nav nav-mg">
+	<ul class="d-flex align-items-center">
+
+		<li class="nav-item dropdown pe-3"><a
+			class="nav-link nav-profile d-flex align-items-center pe-0" href="#">
+
+				<span class="d-md-block ps-2" style="font-size: 20px;">Admin
+					: ${sessionScope.CUSTOMER_LOGIN.customerName}</span>
+		</a> <!-- End Profile Iamge Icon --></li>
+		<!-- End Profile Nav -->
+		<li class="logout-log"><a href="/logout"
+			class="nav-link nav-profile d-flex align-items-center pe-0"
+			style="margin-right: 50px">Logout</a></li>
+
+	</ul>
+	</nav><!-- End Icons Navigation --> </header>
+	<!-- End Header -->
+
+	<!-- ======= Sidebar ======= -->
+	<aside id="sidebar" class="sidebar">
+
+	<ul class="sidebar-nav" id="sidebar-nav">
+
+		<li class="nav-item"><a class="nav-link " href="/admin"> <i
+				class="bi bi-grid"></i> <span>Dashboard</span>
+		</a></li>
+		<!-- End Dashboard Nav -->
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#components-nav" href="/adminCustomer"> <i
+				class="bi bi-menu-button-wide"></i><span>Customers</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a></li>
+		<!-- End Components Nav -->
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#forms-nav" href="/adminCar"> <i
+				class="bi bi-journal-text"></i><span>Cars</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a></li>
+		<!-- End Forms Nav -->
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#tables-nav" href="/adminRental"> <i
+				class="bi bi-layout-text-window-reverse"></i><span>Car Rental</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a></li>
+
+		<li class="nav-item"><a class="nav-link collapsed"
+			data-bs-target="#tables-nav" href="/adminReview"> <i
+				class="bi bi-layout-text-window-reverse"></i><span>Reviews</span><i
+				class="bi bi-chevron-down ms-auto"></i>
+		</a></li>
+		<!-- End Tables Nav -->
+
+
+		<li class="nav-heading">Pages</li>
+
+		<li class="nav-item"><a class="nav-link collapsed" href="#">
+				<i class="bi bi-person"></i> <span>...</span>
+		</a></li>
+		<!-- End Profile Page Nav -->
+		<li class="nav-item"><a class="nav-link collapsed" href="#">
+				<i class="bi bi-envelope"></i> <span>...</span>
+		</a></li>
+		<!-- End Contact Page Nav -->
+		<li class="nav-item"><a class="nav-link collapsed" href="#">
+				<i class="bi bi-card-list"></i> <span>...</span>
+		</a></li>
+		<!-- End Register Page Nav -->
+	</ul>
+
+	</aside>
+	<!-- End Sidebar-->
+
+	<main id="main" class="main">
+
+	<div class="pagetitle">
+		<h1>Reviews</h1>
+		<nav>
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/admin"
+				previewlistener="true">Home</a></li>
+			<li class="breadcrumb-item active">Review</li>
+		</ol>
+		</nav>
+	</div>
+	<!-- End Page Title -->
+
+
+
+	<div class="row" style="margin-top: 5px">
+		<div class="col-md-12">
+			<div>
+				<div class="collapsible-content">
+					<div>
+
+						<table id="Oamuser_Table_1"
+							class="table table-bordered table-striped table-hover table-condensed"
+							border="1" bordercolor="#f9e491" id="sample_1">
+							<thead class="gridheader">
+								<tr>
+									<th style="text-align: center">ID</th>
+									<th style="text-align: center">Comment</th>
+									<th style="text-align: center">Review Star</th>
+									<th style="text-align: center">CarID</th>
+									<th style="text-align: center">CustomerID</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach var="review" varStatus="counter"
+									items="${LIST_REVIEWS}">
+									<tr>
+										<td align="center">${review.id}</td>
+										<td align="center">${review.comment}</td>
+										<td align="center">${review.reviewStar}</td>
+										<td align="center">${review.customer.customerID}</td>
+										<td align="center">${review.car.carID}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</main>
+	<!-- End #main -->
+
+	<!-- ======= Footer ======= -->
+	<footer id="footer" class="footer">
+	<div class="copyright">
+		Car Rentaling System <strong><span>Admin</span></strong>. All Rights
+		Reserved
+	</div>
+	Designed by <a href="https://bootstrapmade.com/" previewlistener="true">HSH</a>
+
+	</footer>
+	<!-- End Footer -->
+
+
+</body>
+
+
+
+<script type="text/javascript" src="resources/js/Lbs_Func_General.js"></script>
+<script type="text/javascript" src="resources/js/Lbs_Modal_Message.js"></script>
+<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery.min.js"></script>
+<script type="text/javascript" src="resources/js/Oamuser_Js_General.js"></script>
+
+</html>
